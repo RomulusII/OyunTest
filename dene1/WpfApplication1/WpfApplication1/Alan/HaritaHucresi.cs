@@ -12,5 +12,15 @@ namespace WpfApplication1.Alan
             Koordinat = koordinat;
             HucreDetay = new HucreDetay(koordinat, zemin, yukseklik, orman, nehir);
         }
+
+        public override string ToString()
+        {
+            var zemin = HucreDetay.Arazi;
+            var yukseklik = HucreDetay.Yukseklik;
+            var nehir = HucreDetay.Nehir;
+            var veg = HucreDetay.Vejetasyon;
+
+            return $"Hucre ({Koordinat.X}, {Koordinat.Y}) {zemin}, {yukseklik}, {nehir}, {veg}";
+        }
     }
 }

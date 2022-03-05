@@ -12,14 +12,9 @@ namespace Data
 
         public DbSet<ProductItem> ProductItems { get; set; }
         public DbSet<Ability> Abilities { get; set; }
-        public DbSet<AbilityType> AbilityTypes { get; set; }
         public DbSet<Bag> Bags { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<BuildingPrototype> BuildingPrototypes { get; set; }
-        public DbSet<BuildingType> BuildingTypes { get; set; }
-        public DbSet<BuildingType> BuildingTypes { get; set; }
-        public DbSet<BuildingType> BuildingTypes { get; set; }
-        public DbSet<BuildingType> BuildingTypes { get; set; }
 
     }
 }

@@ -2,15 +2,13 @@
 
 namespace Model
 {
-    public class AbilityPrototypes
+    public static class AbilityPrototypes
     {
+        public static IDictionary<AbilityType, AbilityPrototype> List { get; } = CreateAbilityPrototypes();
 
-
-        public static IDictionary<AbilityType, AbilityPrototype> List { get; private set; }
-
-        public AbilityPrototypes()
+        private static IDictionary<AbilityType, AbilityPrototype> CreateAbilityPrototypes()
         {
-            List = new Dictionary<AbilityType, AbilityPrototype> ();
+            var list = new Dictionary<AbilityType, AbilityPrototype> ();
 
             AddAbilityPrototype(AbilityType.AnimalHusbandry, Tier.Tier0);
             AddAbilityPrototype(AbilityType.Axt, Tier.Tier0);
@@ -20,10 +18,10 @@ namespace Model
             AddAbilityPrototype(AbilityType.Fishing, Tier.Tier0);
             AddAbilityPrototype(AbilityType.Forestry, Tier.Tier0);
             AddAbilityPrototype(AbilityType.Governing, Tier.Tier2);
-
+            return list;
         }
 
-        private void AddAbilityPrototype(AbilityType abilityType, Tier tier)
+        private static void AddAbilityPrototype(AbilityType abilityType, Tier tier)
         {
             List.Add(abilityType, new AbilityPrototype(abilityType, tier));
         }

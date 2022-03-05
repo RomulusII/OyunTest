@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace WpfApplication1.Alan
 {
@@ -33,13 +34,31 @@ namespace WpfApplication1.Alan
             MaxY = ZeminHarita.Height;
         }
 
-        public void InitHucreler()
+        public async Task InitHucrelerAsync()
         {
             Hucreler = new HaritaHucresi[MaxX, MaxY];
 
-            var adet = 0;
+            int adet = 0;
+            int threadSize = 50;
+            int threadCount = MaxY / threadSize;
+            int threadIndex;
+            int endY;
+            int startY = 0;
+            for (threadIndex = 0; threadIndex <= threadCount; threadIndex++)
+            {
+                endY = (threadIndex + 1) * threadSize;
+                if (endY > MaxY) endY = MaxY;
+                adet += await Task.Run(() => InitHucrelerThread(startY, endY));
+                startY = endY;
+            }
 
-            for (var y = 0; y < MaxY; y++)
+            Debug.WriteLine($"adet: {adet}");
+        }
+
+        private int InitHucrelerThread(int startY, int endY)
+        {
+            var adet = 0;
+            for (var y = startY; y < endY; y++)
             {
                 for (var x = 0; x < MaxX; x++)
                 {
@@ -54,11 +73,11 @@ namespace WpfApplication1.Alan
                     if (hucre.HucreDetay.TanimsizInfo != string.Empty)
                     {
                         OnTanimsizRenk?.Invoke(x, y, hucre);
-                        return;
+                        return adet;
                     }
                 }
             }
-            Debug.WriteLine($"adet: {adet}");
+            return adet;
         }
 
     }

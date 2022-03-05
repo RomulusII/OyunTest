@@ -135,11 +135,11 @@ namespace WpfApplication1
             image.Source = ToBitmapImage(OyunAlani.Harita.NehirHarita);
         }
 
-        private void button_Click_1(object sender, RoutedEventArgs e)
+        private async void button_Click_1(object sender, RoutedEventArgs e)
         {
             var handler = new TanimsizRenkHandler(OnTanimsizRenk);
             OyunAlani.Harita.OnTanimsizRenk += handler;
-            OyunAlani.Harita.InitHucreler();
+            await OyunAlani.Harita.InitHucrelerAsync();
             OyunAlani.Harita.OnTanimsizRenk -= handler;
 
         }
@@ -163,6 +163,13 @@ namespace WpfApplication1
         private void image_MouseMove(object sender, MouseEventArgs e)
         {
             var pos = e.GetPosition(image);
+
+            if (Harita.Hucreler != null)
+            {
+                var hucre = Harita.Hucreler[(int)pos.X, (int)pos.Y];
+                if (hucre != null)
+                    textBlock.Text = $"Hucre ({hucre.Koordinat.X},{hucre.Koordinat.Y}) {hucre.ToString()}";
+            }
 
             var imgSrc = (BitmapSource) image.Source;
             var pixels = GetPixels(imgSrc);
