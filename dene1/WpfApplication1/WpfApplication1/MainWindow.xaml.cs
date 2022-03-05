@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -162,6 +163,11 @@ namespace WpfApplication1
 
         private void image_MouseMove(object sender, MouseEventArgs e)
         {
+            RefreshInfoOnMouse(e);
+        }
+
+        private void RefreshInfoOnMouse(MouseEventArgs e)
+        {
             var pos = e.GetPosition(image);
 
             if (Harita.Hucreler != null)
@@ -171,18 +177,13 @@ namespace WpfApplication1
                     textBlock.Text = $"Hucre ({hucre.Koordinat.X},{hucre.Koordinat.Y}) {hucre.ToString()}";
             }
 
-            var imgSrc = (BitmapSource) image.Source;
+            var imgSrc = (BitmapSource)image.Source;
             var pixels = GetPixels(imgSrc);
 
+            var renk = pixels[(int)pos.X, (int)pos.Y];
+            lblKoordinat.Content = $"{(int)pos.X}, {(int)pos.Y} \n R: {renk.Red} B:{renk.Blue} G:{renk.Green} A:{renk.Alpha} \n{((int)renk.Alpha).ToHex()}{((int)renk.Red).ToHex()}{((int)renk.Blue).ToHex()}{((int)renk.Green).ToHex()}";
 
-            //using (var img = GetBitmap(imgSrc))
-            //{
-                var renk = pixels[(int)pos.X, (int)pos.Y];
-                lblKoordinat.Content = $"{(int)pos.X}, {(int)pos.Y} \n R: {renk.Red} B:{renk.Blue} G:{renk.Green} A:{renk.Alpha} \n{((int)renk.Alpha).ToHex()}{((int)renk.Red).ToHex()}{((int)renk.Blue).ToHex()}{((int)renk.Green).ToHex()}";
-
-                cursorRenk.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(renk.Alpha, renk.Red, renk.Green, renk.Blue));
-
-            //}
+            cursorRenk.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(renk.Alpha, renk.Red, renk.Green, renk.Blue));
         }
 
         Bitmap GetBitmap(BitmapSource source)
