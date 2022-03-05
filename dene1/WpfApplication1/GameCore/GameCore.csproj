@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Map\Haritalar\avrasya orman.fw.bmp" />
+    <None Remove="Map\Haritalar\avrasya-arazi.fw.bmp" />
+    <None Remove="Map\Haritalar\avrasya-nehir.fw.bmp" />
+    <None Remove="Map\Haritalar\avrasya.yukseklik.fw.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Map\Haritalar\avrasya orman.fw.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Map\Haritalar\avrasya-arazi.fw.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Map\Haritalar\avrasya-nehir.fw.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Map\Haritalar\avrasya.yukseklik.fw.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Map\Creation\Alan\" />
+    <Folder Include="Mechanics\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+</Project>

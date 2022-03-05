@@ -1,0 +1,13 @@
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.1\GameCore.deps.json
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.1\GameCore.dll
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.1\GameCore.pdb
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.1\Model.dll
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.1\Model.pdb
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.AssemblyInfoInputs.cache
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.AssemblyInfo.cs
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.csproj.CoreCompileInputs.cache
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.csproj.CopyComplete
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.dll
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.pdb
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.csproj.AssemblyReference.cache
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.1\GameCore.GeneratedMSBuildEditorConfig.editorconfig

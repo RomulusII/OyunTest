@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "2wPI9Zc5qxhIh+2tzUelIfiFkT5s3KqkUFGLYkJwN3CotkXCgqMs53L+bR81JMJ8gPYirq0sv8a/1JbPHeV/aA==",
+  "success": true,
+  "projectFilePath": "C:\\Data\\GIT\\Oyun\\dene1\\WpfApplication1\\Model\\Model.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.codeanalysis.fxcopanalyzers\\3.0.0\\microsoft.codeanalysis.fxcopanalyzers.3.0.0.nupkg.sha512",
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.codeanalysis.versioncheckanalyzer\\3.0.0\\microsoft.codeanalysis.versioncheckanalyzer.3.0.0.nupkg.sha512",
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.codequality.analyzers\\3.0.0\\microsoft.codequality.analyzers.3.0.0.nupkg.sha512",
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.netcore.analyzers\\3.0.0\\microsoft.netcore.analyzers.3.0.0.nupkg.sha512",
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.netframework.analyzers\\3.0.0\\microsoft.netframework.analyzers.3.0.0.nupkg.sha512",
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22000.22\\microsoft.windows.sdk.net.ref.10.0.22000.22.nupkg.sha512"
+  ],
+  "logs": []
+}

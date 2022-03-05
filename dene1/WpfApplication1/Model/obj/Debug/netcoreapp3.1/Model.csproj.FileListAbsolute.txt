@@ -1,0 +1,15 @@
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\Model\bin\Debug\netcoreapp3.1\Model.deps.json
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\Model\bin\Debug\netcoreapp3.1\Model.dll
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.csprojAssemblyReference.cache
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfoInputs.cache
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfo.cs
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\bin\Debug\netcoreapp3.1\Model.deps.json
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\bin\Debug\netcoreapp3.1\Model.dll
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\bin\Debug\netcoreapp3.1\Model.pdb
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfoInputs.cache
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfo.cs
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.csproj.CoreCompileInputs.cache
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.dll
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.pdb
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.csproj.AssemblyReference.cache
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\Model\obj\Debug\netcoreapp3.1\Model.GeneratedMSBuildEditorConfig.editorconfig

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "85iAXWWmBtseLRZ6VsGiGetjvoo2haW6qn1SpIPTefWkB51WJv6TWtkmPEp7rfaW4Iv6k+M6vD/73hrVyer1ZQ==",
+  "success": true,
+  "projectFilePath": "C:\\Data\\GIT\\Oyun\\dene1\\WpfApplication1\\GameCore\\GameCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Romulus\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22000.22\\microsoft.windows.sdk.net.ref.10.0.22000.22.nupkg.sha512"
+  ],
+  "logs": []
+}

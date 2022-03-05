@@ -1,0 +1,10 @@
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.0\GameCore.deps.json
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.0\GameCore.dll
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\bin\Debug\netcoreapp3.0\GameCore.pdb
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.csprojAssemblyReference.cache
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.AssemblyInfoInputs.cache
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.AssemblyInfo.cs
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.dll
+C:\Daten\Quellcode-GIT\Akin\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.pdb
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.dll
+C:\Users\Romulus\OneDrive\Documents\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\netcoreapp3.0\GameCore.pdb
