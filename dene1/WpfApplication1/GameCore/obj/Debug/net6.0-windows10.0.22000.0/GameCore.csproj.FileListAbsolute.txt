@@ -28,3 +28,11 @@ C:\Data\GIT\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.220
 C:\Data\GIT\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\refint\GameCore.dll
 C:\Data\GIT\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.pdb
 C:\Data\GIT\Oyun\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\ref\GameCore.dll
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.csproj.AssemblyReference.cache
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.AssemblyInfoInputs.cache
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.AssemblyInfo.cs
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.csproj.CoreCompileInputs.cache
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.dll
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\refint\GameCore.dll
+C:\Data\GIT\OyunTest\dene1\WpfApplication1\GameCore\obj\Debug\net6.0-windows10.0.22000.0\GameCore.pdb
