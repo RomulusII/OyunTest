@@ -4,43 +4,35 @@ using System.Text;
 
 namespace Model
 {
-    public class Coordinate
+    public enum UnitType
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        Nomad,
+        Civilian,
+        Soldier,
+        Merchant,
+        Animal,
     }
-
     public class Unit
     {
         public double Pop { get; set; }
-        public Bag Bag { get; set; }
+        public Chest Chest { get; set; }
         public List<Profession> Professions { get; } = new List<Profession>();
+        public UnitType UnitType { get; protected set; }
+        public Coordinate Coordinate { get; set; } = default!;
 
-        public Coordinate Coordinate { get; } = new Coordinate();
+        public UnitJobs UnitJobs { get; set; }
 
         public Player Player { get; }
 
-        public Unit(Player player)
+        public Unit(Player player, Coordinate coordinate)
         {
             Player = player;
+            Coordinate = coordinate;
         }
 
-        public static Unit CreateFirstUnit(Player player)
+        public static Unit CreateFirstUnit(Player player, Coordinate coordinate)
         {
-            return new Unit(player);
+            return new Unit(player, coordinate);
         }
-    }
-
-  
-
-    public class Player
-    {
-        string Name { get; set; }
-
-    }
-
-    public class UnitJobs
-    {
-
     }
 }

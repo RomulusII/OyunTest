@@ -8,9 +8,9 @@
 
         public List<Technology> RequiredTechnologies { get; } = new List<Technology>();
         
-        public Bag BuildingCost { get; set; }
+        public Chest BuildingCost { get; set; }
 
-        public Bag BuildingUpkeep { get; set; }
+        public Chest BuildingUpkeep { get; set; }
 
         public List<TechnologyAbilityImpact> AbilityImpacts { get; set; }
     }

@@ -9,30 +9,32 @@
         // AnimalHusbandry, Riding, Bow
         Hunter,
         // Bow
-        Fishing,
+        Fisher,
         // Fishing, ShipBuilding, Seafaring
         Forester,
         // Forestry, Axt
         Miner,
         // Mining, Tools
+
         Webber,
         // Webbing, Handcrafting, Tools
         Potter,
         // Pottery, Handcrafting, Tools
-
         Blacksmith,
         // Blacksmithing, Handcrafting, Tools
+        Transporter,
+        // Logistics, AnimalHusbandry, Handcrafting
+        Builder,
+        // Tools
+        Teacher,
+        // 
+
         Leader,
         // Leadership
         Governer,
         // Governing
         Merchant,
         // Trading, Riding|Seafaring, Logistics, Swords
-        Transporter,
-        // Logistics, AnimalHusbandry, Handcrafting
-
-        Builder,
-        // Tools
 
         Architect,
         // Architecture
@@ -40,8 +42,6 @@
         Wisemen,
         // Knowledge
 
-        Teacher,
-        // 
     }
 
 

@@ -1,6 +1,8 @@
 ﻿using Backoffice.Creator;
 using GameCore;
 using GameCore.Map.Alan;
+using GameCore.Mechanics;
+using GameCore.Services;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,11 +10,14 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using Color = System.Drawing.Color;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 using Point = System.Drawing.Point;
@@ -35,12 +40,13 @@ public partial class MainWindow : Window
     }
 
     public OyunAlaniCreator OyunAlaniCreator { get; set; }
+    public GameEngine GameEngine { get; set; }
 
     private PixelColor[,] GetPixels(BitmapSource source)
     {
         if (source.Format != PixelFormats.Bgra32)
             source = new FormatConvertedBitmap(source, PixelFormats.Bgra32, null, 0);
-
+        
         int width = source.PixelWidth;
         int height = source.PixelHeight;
         PixelColor[,] result = new PixelColor[width, height];
@@ -136,7 +142,7 @@ public partial class MainWindow : Window
         {
             var hucre = Oyun.Harita.Hucreler[(int)pos.X, (int)pos.Y];
             if (hucre != null)
-                textBlock.Text = $"Hucre ({hucre.Koordinat.X},{hucre.Koordinat.Y}) {hucre.ToString()}";
+                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.Koordinat.X},{hucre.Koordinat.Y}) {hucre.ToString()}";
         }
 
         var imgSrc = (BitmapSource)image.Source;
@@ -156,7 +162,7 @@ public partial class MainWindow : Window
           //System.Windows.Media.
           PixelFormat.Format32bppPArgb);
         BitmapData data = bmp.LockBits(
-          new Rectangle(Point.Empty, bmp.Size),
+          new System.Drawing.Rectangle(Point.Empty, bmp.Size),
           ImageLockMode.WriteOnly,
           PixelFormat.Format32bppPArgb);
         source.CopyPixels(
@@ -166,6 +172,47 @@ public partial class MainWindow : Window
           data.Stride);
         bmp.UnlockBits(data);
         return bmp;
+    }
+
+    private void ButtonClickSeedCommunities(object sender, RoutedEventArgs e)
+    {
+        GameEngine = new GameEngine(Oyun.Harita);
+        GameEngine.SeedNpcs();
+        RefreshCommunities();
+    }
+
+    private void RefreshCommunities()
+    {
+        const int communityWidth = 6;
+        var red = System.Windows.Media.Color.FromRgb(200, 0, 0);
+        GameFieldCanvas.Children.Clear();
+        GameFieldCanvas.Children.Add(image);
+        GameFieldCanvas.Width = Oyun.Harita.MaxX;
+        GameFieldCanvas.Height= Oyun.Harita.MaxY;
+
+        SolidColorBrush newColor = new SolidColorBrush(red);
+
+        foreach (var u in GameEngine.Units)
+        {
+            var ellipse = new Ellipse() { Width = communityWidth, Height = communityWidth };
+
+            ellipse.StrokeThickness = 2;
+            ellipse.Stroke = newColor;
+
+
+            GameFieldCanvas.Children.Add(ellipse);
+            Canvas.SetLeft(ellipse, u.Coordinate.X - communityWidth/2);
+            Canvas.SetTop(ellipse, u.Coordinate.Y - communityWidth/2);
+        }
+
+    }
+
+    private void ButtonClickStartGame(object sender, RoutedEventArgs e)
+    {
+        if(TimeService.IsGamePaused)
+            TimeService.ContinueGame();
+        else
+            TimeService.PauseGame();
     }
 
     //public static System.Drawing.Bitmap BitmapSourceToBitmap2(BitmapSource srs)

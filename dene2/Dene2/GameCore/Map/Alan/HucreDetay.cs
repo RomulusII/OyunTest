@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Model;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace GameCore.Map.Alan
@@ -50,12 +51,12 @@ namespace GameCore.Map.Alan
         public HucreNehir Nehir;
         public HucreVejetasyon Vejetasyon;
 
-        private readonly Koordinat _koordinat;
+        private readonly Coordinate _koordinat;
 
         public string TanimsizInfo = string.Empty;
         public Color TanimsizRenk;
 
-        public HucreDetay(Koordinat koordinat, Color zemin, Color yukseklik, Color vejetasyon, Color nehir)
+        public HucreDetay(Coordinate koordinat, Color zemin, Color yukseklik, Color vejetasyon, Color nehir)
         {
             _koordinat = koordinat;
             Arazi = DecodeArazi(zemin);
@@ -148,6 +149,12 @@ namespace GameCore.Map.Alan
                     RenkTanimsiz("Nehir", renk);
                     return HucreNehir.NotSet;
             }
+        }
+
+        private static List<HucreArazi> CanUseAsStartLandType => new() { HucreArazi.IslakArazi, HucreArazi.KurakArazi, HucreArazi.Bozkir, HucreArazi.Otlak };
+        public bool CanUseAsStartup()
+        {
+            return CanUseAsStartLandType.Contains(Arazi);
         }
     }
 }
