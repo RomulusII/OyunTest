@@ -6,7 +6,7 @@ namespace GameCore.Communities.Asker
     {
         public Dictionary<AskerTip, Birlik> Birlikler { get; }
 
-        public Ordu(Player player, Coordinate coordinate) : base(player, coordinate)
+        public Ordu(Player player, int x, int y) : base(player, x, y)
         {
             UnitType = UnitType.Soldier;
 

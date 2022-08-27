@@ -74,7 +74,7 @@ namespace Backoffice.Creator
                     var yuksekPixel = DagHarita.GetPixel(x, y);
                     var ormanPixel = OrmanHarita.GetPixel(x, y);
                     var nehirPixel = NehirHarita.GetPixel(x, y);
-                    var hucre = new HaritaHucresi(new Coordinate(x, y), haritaPixel, yuksekPixel, ormanPixel, nehirPixel);
+                    var hucre = new HaritaHucresi(x, y, haritaPixel, yuksekPixel, ormanPixel, nehirPixel);
                     harita.Hucreler[x, y] = hucre;
                     adet++;
 

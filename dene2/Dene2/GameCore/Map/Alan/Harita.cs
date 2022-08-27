@@ -15,7 +15,7 @@
                 var y = rnd.Next(0, MaxY - 1);
                 hucre = Hucreler[x, y];
 
-            } while (!hucre.HucreDetay.CanUseAsStartup());
+            } while (!hucre.HucreDetay.CanUseAsStartup(rnd));
             return hucre;
         }
 

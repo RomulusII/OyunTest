@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
@@ -6,6 +7,9 @@ namespace Model
 {
     public class Chest : IXmlSerializable
     {
+        [Key]
+        public int Id { get; set; }
+
         public double Food { get; set; }
         public double Straw { get; set; }
 

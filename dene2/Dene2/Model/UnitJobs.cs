@@ -1,7 +1,12 @@
-﻿namespace Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Model
 {
     public class UnitJob
     {
+        [Key]
+        public int Id { get; set; }
+
         public JobType JobType { get; set; }
         public long StartTick { get; set; }
 
@@ -16,7 +21,10 @@
 
     public class UnitJobs
     {
-        public List<JobType> JobTypes { get; set; } = new List<JobType>();
+        [Key]
+        public int Id { get; set; }
+
+        //public List<JobType> JobTypes { get; set; } = new List<JobType>();
         public JobScheduleType JobScheduleType { get; set; }
 
 

@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace GameCore.Map.Alan
 {
-    public class HucreDetay
+    public class HucreDetay : CoordinateBase
     {
         public enum HucreArazi
         {
@@ -51,14 +51,13 @@ namespace GameCore.Map.Alan
         public HucreNehir Nehir;
         public HucreVejetasyon Vejetasyon;
 
-        private readonly Coordinate _koordinat;
-
         public string TanimsizInfo = string.Empty;
         public Color TanimsizRenk;
 
-        public HucreDetay(Coordinate koordinat, Color zemin, Color yukseklik, Color vejetasyon, Color nehir)
+        public HucreDetay(int x, int y, Color zemin, Color yukseklik, Color vejetasyon, Color nehir)
         {
-            _koordinat = koordinat;
+            X = x;
+            Y = y;
             Arazi = DecodeArazi(zemin);
             Yukseklik = DecodeYukseklik(yukseklik);
             Vejetasyon = DecodeVejetasyon(vejetasyon);
@@ -67,7 +66,7 @@ namespace GameCore.Map.Alan
 
         private void RenkTanimsiz(string tip, Color renk)
         {
-            TanimsizInfo = $"Tanimsiz {tip} koordinat ({_koordinat.X},{_koordinat.Y}), renk-Name: {renk.Name} renk-Argb: {renk.ToArgb() & 0xffffff} {renk}";
+            TanimsizInfo = $"Tanimsiz {tip} koordinat ({X},{Y}), renk-Name: {renk.Name} renk-Argb: {renk.ToArgb() & 0xffffff} {renk}";
             TanimsizRenk = renk;
             Debug.WriteLine(TanimsizInfo);
         }
@@ -152,9 +151,29 @@ namespace GameCore.Map.Alan
         }
 
         private static List<HucreArazi> CanUseAsStartLandType => new() { HucreArazi.IslakArazi, HucreArazi.KurakArazi, HucreArazi.Bozkir, HucreArazi.Otlak };
-        public bool CanUseAsStartup()
+        public bool CanUseAsStartup(Random rnd)
         {
-            return CanUseAsStartLandType.Contains(Arazi);
+            var quality = StartupTerrainTypeQuality();
+            if (quality == 0) return false;
+
+            var random = rnd.Next(1000);
+            return quality > random;
+        }
+
+        private int StartupTerrainTypeQuality()
+        {
+            return Arazi switch
+            {
+                HucreArazi.Deniz or HucreArazi.Okyanus => 0,
+                HucreArazi.Buzul => 1,
+                HucreArazi.Tundra => 2,
+                HucreArazi.Cöl => 5,
+                HucreArazi.Bozkir => 20,
+                HucreArazi.KurakArazi => 100,
+                HucreArazi.Otlak => 1000,
+                HucreArazi.IslakArazi => 1000,
+                _ => throw new InvalidOperationException($"{nameof(HucreArazi)} {Arazi} not known."),
+            };
         }
     }
 }

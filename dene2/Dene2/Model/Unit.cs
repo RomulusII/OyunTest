@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Model
@@ -12,27 +13,40 @@ namespace Model
         Merchant,
         Animal,
     }
-    public class Unit
+    public class CoordinateBase
     {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class Unit : CoordinateBase
+    {
+        [Key] 
+        public int Id { get; set; }
         public double Pop { get; set; }
-        public Chest Chest { get; set; }
+        public Chest? Chest { get; set; }
         public List<Profession> Professions { get; } = new List<Profession>();
         public UnitType UnitType { get; protected set; }
-        public Coordinate Coordinate { get; set; } = default!;
+        public UnitJobs? UnitJobs { get; set; }
 
-        public UnitJobs UnitJobs { get; set; }
+        public Player? Player { get; }
 
-        public Player Player { get; }
-
-        public Unit(Player player, Coordinate coordinate)
+        public Unit()
         {
-            Player = player;
-            Coordinate = coordinate;
         }
 
-        public static Unit CreateFirstUnit(Player player, Coordinate coordinate)
+        public Unit(Player player, int x, int y)
         {
-            return new Unit(player, coordinate);
+            Player = player;
+            X = x;
+            Y = y;
+            Chest = new Chest();
+            UnitJobs = new UnitJobs();
+        }
+
+        public static Unit CreateFirstUnit(Player player, int x, int y)
+        {
+            return new Unit(player, x, y);
         }
     }
 }

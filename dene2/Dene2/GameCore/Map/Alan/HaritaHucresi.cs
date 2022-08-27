@@ -3,15 +3,16 @@ using System.Drawing;
 
 namespace GameCore.Map.Alan
 {
-    public class HaritaHucresi
+
+    public class HaritaHucresi : CoordinateBase
     {
-        public Coordinate Koordinat;
         public HucreDetay HucreDetay { get; }
 
-        public HaritaHucresi(Coordinate koordinat, Color zemin, Color yukseklik, Color orman, Color nehir)
+        public HaritaHucresi(int x, int y, Color zemin, Color yukseklik, Color orman, Color nehir)
         {
-            Koordinat = koordinat;
-            HucreDetay = new HucreDetay(koordinat, zemin, yukseklik, orman, nehir);
+            HucreDetay = new HucreDetay(x, y, zemin, yukseklik, orman, nehir);
+            X = x;
+            Y = y;
         }
 
         public override string ToString()
@@ -21,7 +22,7 @@ namespace GameCore.Map.Alan
             var nehir = HucreDetay.Nehir;
             var veg = HucreDetay.Vejetasyon;
 
-            return $"Hucre ({Koordinat.X}, {Koordinat.Y}) {zemin}, {yukseklik}, {nehir}, {veg}";
+            return $"Hucre ({X}, {Y}) {zemin}, {yukseklik}, {nehir}, {veg}";
         }
     }
 }

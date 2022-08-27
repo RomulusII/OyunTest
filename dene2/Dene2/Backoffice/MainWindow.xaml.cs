@@ -2,6 +2,7 @@
 using GameCore;
 using GameCore.Map.Alan;
 using GameCore.Mechanics;
+using GameCore.Mechanics.Seeder;
 using GameCore.Services;
 using System;
 using System.Diagnostics;
@@ -40,7 +41,7 @@ public partial class MainWindow : Window
     }
 
     public OyunAlaniCreator OyunAlaniCreator { get; set; }
-    public GameEngine GameEngine { get; set; }
+    //public GameEngine GameEngine { get; set; }
 
     private PixelColor[,] GetPixels(BitmapSource source)
     {
@@ -66,6 +67,7 @@ public partial class MainWindow : Window
         m.Top = image.Margin.Top - hedef.Height / 2;
 
         hedef.Margin = m;
+        //RefreshCommunities();
     }
 
     private void button_Click(object sender, RoutedEventArgs e)
@@ -111,6 +113,8 @@ public partial class MainWindow : Window
         OyunAlaniCreator.HaritaCreator.OnTanimsizRenk += handler;
         await OyunAlaniCreator.HaritaCreator.InitHucrelerAsync();
         OyunAlaniCreator.HaritaCreator.OnTanimsizRenk -= handler;
+
+        RefreshCommunities();
     }
 
     private void OnTanimsizRenk(int x, int y, HaritaHucresi hucre)
@@ -138,11 +142,11 @@ public partial class MainWindow : Window
     {
         var pos = e.GetPosition(image);
 
-        if (Oyun.Harita.Hucreler != null)
+        if (GameService.Game.Harita.Hucreler != null)
         {
-            var hucre = Oyun.Harita.Hucreler[(int)pos.X, (int)pos.Y];
+            var hucre = GameService.Game.Harita.Hucreler[(int)pos.X, (int)pos.Y];
             if (hucre != null)
-                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.Koordinat.X},{hucre.Koordinat.Y}) {hucre.ToString()}";
+                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.X},{hucre.Y}) {hucre.ToString()}";
         }
 
         var imgSrc = (BitmapSource)image.Source;
@@ -176,8 +180,8 @@ public partial class MainWindow : Window
 
     private void ButtonClickSeedCommunities(object sender, RoutedEventArgs e)
     {
-        GameEngine = new GameEngine(Oyun.Harita);
-        GameEngine.SeedNpcs();
+        GameSeeder.SeedGame();
+
         RefreshCommunities();
     }
 
@@ -187,24 +191,22 @@ public partial class MainWindow : Window
         var red = System.Windows.Media.Color.FromRgb(200, 0, 0);
         GameFieldCanvas.Children.Clear();
         GameFieldCanvas.Children.Add(image);
-        GameFieldCanvas.Width = Oyun.Harita.MaxX;
-        GameFieldCanvas.Height= Oyun.Harita.MaxY;
+        GameFieldCanvas.Width = GameService.Game.Harita.MaxX;
+        GameFieldCanvas.Height= GameService.Game.Harita.MaxY;
 
         SolidColorBrush newColor = new SolidColorBrush(red);
 
-        foreach (var u in GameEngine.Units)
+        foreach (var u in GameService.Game.GameContext.Units)
         {
             var ellipse = new Ellipse() { Width = communityWidth, Height = communityWidth };
 
             ellipse.StrokeThickness = 2;
             ellipse.Stroke = newColor;
 
-
             GameFieldCanvas.Children.Add(ellipse);
-            Canvas.SetLeft(ellipse, u.Coordinate.X - communityWidth/2);
-            Canvas.SetTop(ellipse, u.Coordinate.Y - communityWidth/2);
+            Canvas.SetLeft(ellipse, u.X - communityWidth/2);
+            Canvas.SetTop(ellipse, u.Y - communityWidth/2);
         }
-
     }
 
     private void ButtonClickStartGame(object sender, RoutedEventArgs e)
@@ -213,6 +215,7 @@ public partial class MainWindow : Window
             TimeService.ContinueGame();
         else
             TimeService.PauseGame();
+
     }
 
     //public static System.Drawing.Bitmap BitmapSourceToBitmap2(BitmapSource srs)
