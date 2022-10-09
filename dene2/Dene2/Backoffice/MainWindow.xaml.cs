@@ -146,7 +146,7 @@ public partial class MainWindow : Window
         {
             var hucre = GameService.Game.Harita.Hucreler[(int)pos.X, (int)pos.Y];
             if (hucre != null)
-                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.X},{hucre.Y}) {hucre.ToString()}";
+                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.X},{hucre.Y}) {hucre.ToString()} ";
         }
 
         var imgSrc = (BitmapSource)image.Source;
@@ -156,6 +156,18 @@ public partial class MainWindow : Window
         lblKoordinat.Content = $"{(int)pos.X}, {(int)pos.Y} \n R: {renk.Red} B:{renk.Blue} G:{renk.Green} A:{renk.Alpha} \n{((int)renk.Alpha).ToHex()}{((int)renk.Red).ToHex()}{((int)renk.Blue).ToHex()}{((int)renk.Green).ToHex()}";
 
         cursorRenk.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(renk.Alpha, renk.Red, renk.Green, renk.Blue));
+    }
+
+    private void RefreshInfo(MouseEventArgs e)
+    {
+        var pos = e.GetPosition(image);
+
+        if (GameService.Game.Harita.Hucreler != null)
+        {
+            var hucre = GameService.Game.Harita.Hucreler[(int)pos.X, (int)pos.Y];
+            if (hucre != null)
+                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.X},{hucre.Y}) {hucre.ToString()}";
+        }
     }
 
     Bitmap GetBitmap(BitmapSource source)
@@ -217,6 +229,8 @@ public partial class MainWindow : Window
             TimeService.PauseGame();
 
     }
+
+
 
     //public static System.Drawing.Bitmap BitmapSourceToBitmap2(BitmapSource srs)
     //{

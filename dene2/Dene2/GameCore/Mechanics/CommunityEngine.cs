@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameCore.Extensions;
+using Model;
 
 namespace GameCore.Mechanics
 {
     public class CommunityEngine
     {
+        public void ProcessProduction(Unit unit)
+        {
+            var mapCell = unit.GetHucre();
+
+            
+        }
     }
+
 }

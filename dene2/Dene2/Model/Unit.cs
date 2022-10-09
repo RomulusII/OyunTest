@@ -48,5 +48,10 @@ namespace Model
         {
             return new Unit(player, x, y);
         }
+
+        public override string ToString()
+        {
+            return $"unit: {Id} {UnitType}";
+        }
     }
 }

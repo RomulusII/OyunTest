@@ -19,7 +19,9 @@ namespace GameCore.Mechanics.Seeder
         private static void SeedUnits()
         {
             var npc = new Player();
-
+            GameService.Game.GameContext.TruncateTable("Units");
+            GameService.Game.GameContext.TruncateTable("UnitJobs");
+            GameService.Game.GameContext.TruncateTable("Chest");
             var rnd = new Random();
             for (int i = 0; i < 3000; i++)
             {

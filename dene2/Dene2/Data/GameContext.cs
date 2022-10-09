@@ -10,5 +10,10 @@ namespace Data
 
         public DbSet<Player> Players { get; set; }
         public DbSet<Unit> Units { get; set; }
+
+        public void TruncateTable(string tableName)
+        {
+            Database.ExecuteSqlRaw($"TRUNCATE TABLE [{tableName}];");
+        }
     }
 }

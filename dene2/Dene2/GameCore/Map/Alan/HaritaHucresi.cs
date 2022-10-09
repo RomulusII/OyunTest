@@ -1,3 +1,4 @@
+using GameCore.Services;
 using Model;
 using System.Drawing;
 
@@ -22,7 +23,16 @@ namespace GameCore.Map.Alan
             var nehir = HucreDetay.Nehir;
             var veg = HucreDetay.Vejetasyon;
 
-            return $"Hucre ({X}, {Y}) {zemin}, {yukseklik}, {nehir}, {veg}";
+            var units = GameService.Game.GameContext.Units.Where(u => Math.Abs(u.X-X) + Math.Abs(u.Y - Y) < 10);
+           // units = GameService.Game.GameContext.Units;
+            var unitStr = string.Empty;
+            foreach (var unit in units)
+                {
+                    if (unitStr != string.Empty) unitStr += ", ";
+                    unitStr += unit.ToString();
+                }
+
+            return $"Hucre ({X}, {Y}) {zemin}, {yukseklik}, {nehir}, {veg}. {unitStr}";
         }
     }
 }
