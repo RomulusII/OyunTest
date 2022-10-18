@@ -1,4 +1,4 @@
-using GameCore.Map.Alan;
+using GameCore.Map;
 using Model;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 
 namespace Backoffice.Creator
 {
-    public delegate void TanimsizRenkHandler(int x, int y, HaritaHucresi hucre);
+    public delegate void TanimsizRenkHandler(int x, int y, MapCell hucre);
 
     public class HaritaCreator
     {
@@ -37,7 +37,7 @@ namespace Backoffice.Creator
 
         public async Task InitHucrelerAsync()
         {
-            Harita.Hucreler = new HaritaHucresi[ZeminHarita.Width, ZeminHarita.Height];
+            Harita.Hucreler = new MapCell[ZeminHarita.Width, ZeminHarita.Height];
             Harita.MaxX = ZeminHarita.Width;
             Harita.MaxY = ZeminHarita.Height;
 
@@ -74,11 +74,11 @@ namespace Backoffice.Creator
                     var yuksekPixel = DagHarita.GetPixel(x, y);
                     var ormanPixel = OrmanHarita.GetPixel(x, y);
                     var nehirPixel = NehirHarita.GetPixel(x, y);
-                    var hucre = new HaritaHucresi(x, y, haritaPixel, yuksekPixel, ormanPixel, nehirPixel);
+                    var hucre = new MapCell(x, y, haritaPixel, yuksekPixel, ormanPixel, nehirPixel);
                     harita.Hucreler[x, y] = hucre;
                     adet++;
 
-                    if (hucre.HucreDetay.TanimsizInfo != string.Empty)
+                    if (hucre.SeedFromBitmapUndefinedInfo != string.Empty)
                     {
                         OnTanimsizRenk?.Invoke(x, y, hucre);
                         return adet;

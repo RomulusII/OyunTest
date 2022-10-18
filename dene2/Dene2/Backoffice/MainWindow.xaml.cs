@@ -1,6 +1,6 @@
 ﻿using Backoffice.Creator;
 using GameCore;
-using GameCore.Map.Alan;
+using GameCore.Map;
 using GameCore.Mechanics;
 using GameCore.Mechanics.Seeder;
 using GameCore.Services;
@@ -117,12 +117,12 @@ public partial class MainWindow : Window
         RefreshCommunities();
     }
 
-    private void OnTanimsizRenk(int x, int y, HaritaHucresi hucre)
+    private void OnTanimsizRenk(int x, int y, MapCell hucre)
     {
-        textBlock.Text = $"OnTanimsizRenk {x}, {y} {hucre.HucreDetay.TanimsizInfo}";
-        var renk = hucre.HucreDetay.TanimsizRenk;
+        textBlock.Text = $"OnTanimsizRenk {x}, {y} {hucre.SeedFromBitmapUndefinedInfo}";
+        var renk = hucre.SeedFromBitmapUndefinedColor;
         renkGosterge.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(renk.A, renk.R, renk.G, renk.B));
-        Debug.Print($"OnTanimsizRenk {x}, {y} {hucre.HucreDetay.TanimsizInfo}");
+        Debug.Print($"OnTanimsizRenk {x}, {y} {hucre.SeedFromBitmapUndefinedInfo}");
 
         var m = hedef.Margin;
 

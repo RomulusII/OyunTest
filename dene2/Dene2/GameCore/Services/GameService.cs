@@ -1,5 +1,5 @@
 ﻿using Data;
-using GameCore.Map.Alan;
+using GameCore.Map;
 using GameCore.Mechanics;
 using Model;
 
