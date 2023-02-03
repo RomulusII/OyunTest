@@ -1,18 +1,14 @@
 using GameCore.Map;
-using Model;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 
-namespace Backoffice.Creator
+namespace GameCore.Creator
 {
     public delegate void TanimsizRenkHandler(int x, int y, MapCell hucre);
 
     public class HaritaCreator
     {
-        public event TanimsizRenkHandler OnTanimsizRenk;
+        public event TanimsizRenkHandler? OnTanimsizRenk;
 
         private const string ZeminHaritaPng = "Haritalar\\avrasya-arazi.fw.bmp";
         private const string OrmanHaritaPng = "Haritalar\\avrasya orman.fw.bmp";
@@ -28,7 +24,8 @@ namespace Backoffice.Creator
 
         public HaritaCreator(Harita harita)
         {
-            Harita = harita ?? throw new System.ArgumentNullException(nameof(harita));
+            Harita = harita ?? throw new ArgumentNullException(nameof(harita));
+            
             ZeminHarita = new Bitmap(ZeminHaritaPng);
             OrmanHarita = new Bitmap(OrmanHaritaPng);
             DagHarita = new Bitmap(DagTepeHaritaPng);
@@ -37,6 +34,8 @@ namespace Backoffice.Creator
 
         public async Task InitHucrelerAsync()
         {
+            if (ZeminHarita == null) throw new InvalidOperationException($"{nameof(ZeminHarita)} is null");
+
             Harita.Hucreler = new MapCell[ZeminHarita.Width, ZeminHarita.Height];
             Harita.MaxX = ZeminHarita.Width;
             Harita.MaxY = ZeminHarita.Height;
@@ -86,20 +85,6 @@ namespace Backoffice.Creator
                 }
             }
             return adet;
-        }
-        public static Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
-        {
-            // BitmapImage bitmapImage = new BitmapImage(new Uri("../Images/test.png", UriKind.Relative));
-
-            using (MemoryStream outStream = new())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapImage));
-                enc.Save(outStream);
-                var bitmap = new Bitmap(outStream);
-
-                return new Bitmap(bitmap);
-            }
         }
     }
 }

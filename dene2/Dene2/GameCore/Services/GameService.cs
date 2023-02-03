@@ -1,4 +1,5 @@
 ﻿using Data;
+using GameCore.Creator;
 using GameCore.Map;
 using GameCore.Mechanics;
 using Model;
@@ -8,8 +9,15 @@ namespace GameCore.Services
 
     public static class GameService
     {
-        public static Game Game { get; } = new Game();
-
+        private static Game game;
+        public static Game Game
+        {
+            get
+            {
+                if(game == null) { game= new Game(); }
+                return game;
+            }
+        }
         static GameService()
         {
             
@@ -21,13 +29,19 @@ namespace GameCore.Services
         //public Dictionary<int, Player> AllPlayers { get; } = new Dictionary<int, Player>();
         //public Dictionary<int, Unit> AllUnits { get; } = new Dictionary<int, Unit>();
 
+        public HaritaCreator HaritaCreator;
+
         public GameContext GameContext;
-        public Harita Harita { get; } = new();
-        public GameEngine GameEngine { get; } = new GameEngine();
+        public Harita Harita { get; }
+        public GameEngine GameEngine { get; } = new();
 
         public Game()
         {
-            GameContext = new GameContext();                 
+            GameContext = new GameContext();
+            Harita = new();
+            HaritaCreator = new(Harita);
+
+            HaritaCreator.InitHucrelerAsync();
         }
     }
 

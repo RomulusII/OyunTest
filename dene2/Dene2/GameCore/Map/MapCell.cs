@@ -48,14 +48,14 @@ namespace GameCore.Map
             Orman
         }
 
-        public CellTerrain Terrain;
-        public CellAltitude Altitude;
-        public CellWater Water;
-        public CellVegetation Vegetation;
+        public CellTerrain Terrain { get; set; }
+        public CellAltitude Altitude { get; set; }
+        public CellWater Water { get; set; }
+        public CellVegetation Vegetation { get; set; }
 
-        public string SeedFromBitmapUndefinedInfo = string.Empty;
-        public Color SeedFromBitmapUndefinedColor;
-
+        public string SeedFromBitmapUndefinedInfo { get; set; } = string.Empty;
+        public Color SeedFromBitmapUndefinedColor { get; set; }
+        public string Info => ToString();
         public MapCell(int x, int y, Color zemin, Color yukseklik, Color vejetasyon, Color nehir)
         {
             X = x;

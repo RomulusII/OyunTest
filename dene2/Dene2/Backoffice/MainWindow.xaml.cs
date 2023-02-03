@@ -1,5 +1,5 @@
-﻿using Backoffice.Creator;
-using GameCore;
+﻿using GameCore;
+using GameCore.Creator;
 using GameCore.Map;
 using GameCore.Mechanics;
 using GameCore.Mechanics.Seeder;
@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Threading;
@@ -19,6 +20,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Color = System.Drawing.Color;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 using Point = System.Drawing.Point;
@@ -40,9 +42,6 @@ public partial class MainWindow : Window
         public byte Alpha;
     }
 
-    public OyunAlaniCreator OyunAlaniCreator { get; set; }
-    //public GameEngine GameEngine { get; set; }
-
     private PixelColor[,] GetPixels(BitmapSource source)
     {
         if (source.Format != PixelFormats.Bgra32)
@@ -56,10 +55,13 @@ public partial class MainWindow : Window
         return result;
     }
 
+    private TanimsizRenkHandler tanimsizRenkHandler;
     public MainWindow()
     {
         InitializeComponent();
-        OyunAlaniCreator = new OyunAlaniCreator();
+        tanimsizRenkHandler = new TanimsizRenkHandler(OnTanimsizRenk);
+
+        GameService.Game.HaritaCreator.OnTanimsizRenk += tanimsizRenkHandler;
 
         var m = hedef.Margin;
 
@@ -68,11 +70,24 @@ public partial class MainWindow : Window
 
         hedef.Margin = m;
         //RefreshCommunities();
+
+        DispatcherTimer timer = new DispatcherTimer();
+        timer.Interval = TimeSpan.FromMilliseconds(1);
+        timer.Tick += timer_Tick;
+        timer.Start();
+
     }
+
+
+    void timer_Tick(object sender, EventArgs e)
+    {
+        RefreshInfo();
+    }
+
 
     private void button_Click(object sender, RoutedEventArgs e)
     {
-        image.Source = ToBitmapImage(OyunAlaniCreator.HaritaCreator.ZeminHarita);
+        image.Source = ToBitmapImage(GameService.Game.HaritaCreator.ZeminHarita);
     }
 
     public static BitmapImage ToBitmapImage(Bitmap bitmap)
@@ -94,26 +109,21 @@ public partial class MainWindow : Window
 
     private void btnDagTepe_Click(object sender, RoutedEventArgs e)
     {
-        image.Source = ToBitmapImage(OyunAlaniCreator.HaritaCreator.DagHarita);
+        image.Source = ToBitmapImage(GameService.Game.HaritaCreator.DagHarita);
     }
 
     private void btnOrman_Click(object sender, RoutedEventArgs e)
     {
-        image.Source = ToBitmapImage(OyunAlaniCreator.HaritaCreator.OrmanHarita);
+        image.Source = ToBitmapImage(GameService.Game.HaritaCreator.OrmanHarita);
     }
 
     private void btnNehir_Click(object sender, RoutedEventArgs e)
     {
-        image.Source = ToBitmapImage(OyunAlaniCreator.HaritaCreator.NehirHarita);
+        image.Source = ToBitmapImage(GameService.Game.HaritaCreator.NehirHarita);
     }
 
     private async void button_Click_1(object sender, RoutedEventArgs e)
     {
-        var handler = new TanimsizRenkHandler(OnTanimsizRenk);
-        OyunAlaniCreator.HaritaCreator.OnTanimsizRenk += handler;
-        await OyunAlaniCreator.HaritaCreator.InitHucrelerAsync();
-        OyunAlaniCreator.HaritaCreator.OnTanimsizRenk -= handler;
-
         RefreshCommunities();
     }
 
@@ -138,24 +148,39 @@ public partial class MainWindow : Window
         RefreshInfoOnMouse(e);
     }
 
+    private string hucreInfo;
+
+    private void RefreshInfo()
+    {
+        textBlock.Text = $"{TimeService.ToTimeString()} {hucreInfo} ";
+    }
     private void RefreshInfoOnMouse(MouseEventArgs e)
     {
-        var pos = e.GetPosition(image);
-
-        if (GameService.Game.Harita.Hucreler != null)
+        try
         {
-            var hucre = GameService.Game.Harita.Hucreler[(int)pos.X, (int)pos.Y];
-            if (hucre != null)
-                textBlock.Text = $"{TimeService.ToTimeString()} Hucre ({hucre.X},{hucre.Y}) {hucre.ToString()} ";
+            var pos = e.GetPosition(image);
+
+            if (GameService.Game.Harita.Hucreler != null)
+            {
+                var hucre = GameService.Game.Harita.Hucreler[(int)pos.X, (int)pos.Y];
+                if (hucre != null)
+                    hucreInfo = $"Hucre ({hucre.X},{hucre.Y}) {hucre.ToString()}";
+
+            }
+
+            var imgSrc = (BitmapSource)image.Source;
+            var pixels = GetPixels(imgSrc);
+
+            var renk = pixels[(int)pos.X, (int)pos.Y];
+            lblKoordinat.Content = $"{(int)pos.X}, {(int)pos.Y} \n R: {renk.Red} B:{renk.Blue} G:{renk.Green} A:{renk.Alpha} \n{((int)renk.Alpha).ToHex()}{((int)renk.Red).ToHex()}{((int)renk.Blue).ToHex()}{((int)renk.Green).ToHex()}";
+
+            cursorRenk.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(renk.Alpha, renk.Red, renk.Green, renk.Blue));
+            RefreshInfo();
         }
-
-        var imgSrc = (BitmapSource)image.Source;
-        var pixels = GetPixels(imgSrc);
-
-        var renk = pixels[(int)pos.X, (int)pos.Y];
-        lblKoordinat.Content = $"{(int)pos.X}, {(int)pos.Y} \n R: {renk.Red} B:{renk.Blue} G:{renk.Green} A:{renk.Alpha} \n{((int)renk.Alpha).ToHex()}{((int)renk.Red).ToHex()}{((int)renk.Blue).ToHex()}{((int)renk.Green).ToHex()}";
-
-        cursorRenk.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(renk.Alpha, renk.Red, renk.Green, renk.Blue));
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
 
     private void RefreshInfo(MouseEventArgs e)
