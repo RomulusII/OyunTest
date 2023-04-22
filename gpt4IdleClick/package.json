@@ -1,0 +1,17 @@
+{
+  "name": "idle-clicker-game",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "pixi.js": "^6.1.3"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0",
+    "punycode": "^1.4.1",
+    "querystring-es3": "^0.2.1",
+    "typescript": "^4.4.3"
+  }
+}
