@@ -567,6 +567,10 @@ const foodToCreatePerson = 10;
 const foodToUpgradeFarm = 10;
 const farmUpgradeMultiplier = 1.5;
 class Game {
+    // method idle villagers
+    idleVillagers() {
+        return this.people - this.farmers - this.gatherers - this.woodcutters - this.hunters - this.builders - this.warriors - this.miners - this.blacksmiths - this.traders - this.explorers - this.scientists - this.inventors - this.engineers - this.merchants;
+    }
     constructor(){
         this.app = new _pixiJs.Application({
             width: screenWidth,
@@ -574,16 +578,21 @@ class Game {
             backgroundColor: 0x1099bb
         });
         document.body.appendChild(this.app.view);
-        this.food = 0;
-        this.people = 0;
+        this.food = 100;
+        this.people = 1;
         this.farms = 1;
-        this.farmProduction = 1;
+        this.farmProduction = 0.1;
         this.foodText = this.createText(`Food: ${this.food}`);
         this.peopleText = this.createText(`People: ${this.people}`, 40);
         this.farmsText = this.createText(`Farms: ${this.farms}`, 80);
+        // create the button for creating farmer
+        this.createFarmerButton = this.createButton("Assign Farmer", 160, this.handleAssignFarmerButtonClick.bind(this));
         this.createPersonButton = this.createButton("Create Person", 120, this.handleCreatePersonButtonClick.bind(this));
-        this.app.stage.addChild(this.foodText, this.peopleText, this.farmsText, this.createPersonButton);
+        this.app.stage.addChild(this.foodText, this.peopleText, this.farmsText, this.createPersonButton, this.createFarmerButton);
         this.app.ticker.add(this.update.bind(this));
+    }
+    handleAssignFarmerButtonClick() {
+        console.log("handleAssignFarmerButtonClick");
     }
     handleCreatePersonButtonClick() {
         console.log("handleCreatePersonButtonClick");
@@ -607,9 +616,6 @@ class Game {
         newText.y = y;
         return newText;
     }
-    onClickFarm() {
-        console.log("onClickFarm");
-    }
     createButton(text, y, onClick) {
         const button = new _pixiJs.Sprite(_pixiJs.Texture.WHITE);
         button.width = 150;
@@ -619,13 +625,13 @@ class Game {
         button.buttonMode = true;
         button.on("pointerdown", onClick);
         const buttonText = new _pixiJs.Text(text, {
-            fontSize: 18,
+            fontSize: 10,
             fill: 0xffffff
         });
+        button.addChild(buttonText);
         buttonText.anchor.set(0.5);
         buttonText.x = button.width / 2;
         buttonText.y = button.height / 2;
-        button.addChild(buttonText);
         button.x = 10;
         button.y = y;
         return button;

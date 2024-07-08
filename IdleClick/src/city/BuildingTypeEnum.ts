@@ -1,0 +1,15 @@
+export enum BuildingTypeEnum {
+  wilderness,
+  house,
+  gathererHut,
+  hunterHut,
+  farm,
+  lumberjackHut,
+  ironMine,
+  quarry,
+  blacksmith,
+  school,
+  barracks,
+  warehouse,
+  workshop,
+}

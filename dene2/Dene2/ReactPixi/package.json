@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@pixi/sound": "^5.0.0",
-    "pixi.js": "^7.1.1",
+    "pixi.js": "^7.2.4",
     "tweedle.js": "^2.0.1"
   },
   "devDependencies": {
