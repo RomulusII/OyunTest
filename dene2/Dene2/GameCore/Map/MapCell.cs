@@ -5,48 +5,47 @@ using System.Drawing;
 
 namespace GameCore.Map
 {
+    public enum CellTerrain
+    {
+        NotSet = 0,
+        Buzul = 1,
+        Deniz = 2,
+        Okyanus = 3,
+        Tundra = 4,
+        IslakArazi = 5,
+        Otlak = 6,
+        Bozkir = 7,
+        KurakArazi = 8,
+        Cöl = 9
+    }
+
+    public enum CellAltitude
+    {
+        NotSet = 0,
+        Deniz = 1,
+        Ova = 2,
+        Tepelik = 3,
+        Daglik = 4,
+        Yayla = 5
+    }
+    public enum CellWater
+    {
+        NotSet,
+        Yok,
+        Dere,
+        Nehir,
+        Delta
+    }
+
+    public enum CellVegetation
+    {
+        NotSet,
+        Yok,
+        Orman
+    }
 
     public class MapCell : CoordinateBase
     {
-        public enum CellTerrain
-        {
-            NotSet = 0,
-            Buzul = 1,
-            Deniz = 2,
-            Okyanus = 3,
-            Tundra = 4,
-            IslakArazi = 5,
-            Otlak = 6,
-            Bozkir = 7,
-            KurakArazi = 8,
-            Cöl = 9
-        }
-
-        public enum CellAltitude
-        {
-            NotSet = 0,
-            Deniz = 1,
-            Ova = 2,
-            Tepelik = 3,
-            Daglik = 4,
-            Yayla = 5
-        }
-
-        public enum CellWater
-        {
-            NotSet,
-            Yok,
-            Dere,
-            Nehir,
-            Delta
-        }
-
-        public enum CellVegetation
-        {
-            NotSet,
-            Yok,
-            Orman
-        }
 
         public CellTerrain Terrain { get; set; }
         public CellAltitude Altitude { get; set; }

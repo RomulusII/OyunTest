@@ -16,7 +16,7 @@ namespace OyunApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "Oyun")]
+        [HttpGet("hucre")]
         public ActionResult<MapCell> Get(int x, int y)
         {
             try
@@ -35,5 +35,47 @@ namespace OyunApi.Controllers
                 throw;
             }        
         }
+
+        [HttpGet("hucreler")]
+        public ActionResult<List<List<MapCell>>> GetHucreler(int x, int y)
+        {
+            try
+            {
+                var maxCell = 10;
+
+                var rslt = new List<List<MapCell>>();
+
+                var maxX = Math.Min(x + maxCell, GameService.Game.Harita.MaxX);
+                var minX = Math.Max(x - maxCell, 0);
+
+                var maxY = Math.Min(y + maxCell, GameService.Game.Harita.MaxY);
+                var minY = Math.Max(y - maxCell, 0);
+
+                for(int i = minY; i < maxY; i++)
+                {
+                    var hucreLine = new List<MapCell>();
+                    rslt.Add(hucreLine);
+
+                    for (int j = minX; j < maxX; j++)
+                    {
+
+                        var hucre = GameService.Game.Harita.Hucreler[j, i];
+                        hucreLine.Add(hucre);
+                    }
+                }
+                return Ok(rslt);
+
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
     }
 }

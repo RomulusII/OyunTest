@@ -5,20 +5,6 @@ using System.Text;
 
 namespace Model
 {
-    public enum UnitType
-    {
-        Nomad,
-        Civilian,
-        Soldier,
-        Merchant,
-        Animal,
-    }
-    public class CoordinateBase
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-    }
-
     public class Unit : CoordinateBase
     {
         [Key] 
