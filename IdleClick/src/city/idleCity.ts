@@ -223,7 +223,13 @@ class IdleCity extends Container implements IScene {
     return this.cityPeople.people - this.GetActiveWorkers();
   }
 
+  public ResetActiveWorkers(): void {
+    this.buildings.forEach((building) => {
+      building.activeWorkers = 0;
+    });
+  }
   public AssignWorkers(): void {
+    this.ResetActiveWorkers();
     this.buildings.forEach((building) => {
       building.AssignWorkers(this.GetIdleVillagers());
     });
@@ -245,7 +251,7 @@ class IdleCity extends Container implements IScene {
 
     this.peopleText.text = `People: ${Math.trunc(
       this.cityPeople.people
-    )} Idle: ${Math.trunc(this.cityPeople.IdleVillagers())}`;
+    )} Idle: ${Math.trunc(this.GetIdleVillagers())}`;
 
     this.buildingsText.text = this.getBuildingsInfo();
   }
